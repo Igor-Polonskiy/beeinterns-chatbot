@@ -19,6 +19,8 @@ $(document).ready(function() {
         usermessage.append('<p>' + text.val() + '</p>');
         message.append(userico, usermessage);
         dialog.append(message);
+        dialog.scrollTop(dialog.prop('scrollHeight'));
+
 
         if (text.val() == '/start') {
 
@@ -67,13 +69,16 @@ $(document).ready(function() {
 
         }
 
-
+        
         answer.append(botico, botmessage);
-        dialog.append(answer);
-        text.val('');
-        dialog.scrollTop(dialog.prop('scrollHeight'));
+        //dialog.append(answer);
+        setTimeout(function(){dialog.append(answer);
+        	dialog.scrollTop(dialog.prop('scrollHeight'));
+        }, 1000);
+   		text.val('');
+       
     });
-
+     
 
 })
 
