@@ -22,7 +22,7 @@ function check() {
 }
 
 
-send.click(function() {
+send.click(async function() {
     let botico = $('<img src="img/bot.svg">');
     let userico = $('<img src="img/user.svg">');
     let message = $("<div class='message'></div>");
@@ -79,6 +79,14 @@ send.click(function() {
             let result = number1 / number2;
             botmessage.append('<p>' + number1 + '/' + number2 + '=' + result + '</p>');
             count = false;
+        } else if (arr[0] == '/weather') {
+//'f85lGrZIE2W1l0Qdulmgl3uXue91uaPB'
+        	let url = 'http://dataservice.accuweather.com/forecasts/v1/daily/5day/294021?apikey=f85lGrZIE2W1l0Qdulmgl3uXue91uaPB&language=ru-RU&metric=true';
+        	let response = await fetch(url);
+        	let data = await response.json();
+        	alert(data.DailyForecasts[1].Day.IconPhrase);
+            botmessage.append('<p>Всего доброго, если хочешь поговорить пиши /start</p>');
+            start = false;
         } else if (arr[0] == '/stop') {
             botmessage.append('<p>Всего доброго, если хочешь поговорить пиши /start</p>');
             start = false;
