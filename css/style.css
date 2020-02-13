@@ -83,12 +83,18 @@ textarea {
 
 }
 
-button {
-    cursor: pointer;
+button  {
     background-color: transparent;
     border: none;
     padding: 0;
     outline:none;
+}
+.send {
+	cursor: pointer;
+}
+
+.nodisplay {
+	display: none;
 }
 
 .message {

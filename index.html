@@ -19,8 +19,12 @@
                 </div>
             </div>
             <div class='form'>
-                <textarea type="text" name="message" class="textmessage"></textarea>
-                <button class="send"><img src="img/Path_orange.svg"></button>
+                <textarea type="text" name="message" class="textmessage" onkeyup="check()"></textarea>
+                <button  >
+                	<img src="img/Path_gray.svg" id='graybutton'>
+                	<img src="img/Path_orange.svg" class="nodisplay send">
+                </button>
+                
             </div>
         </div>
     </div>
