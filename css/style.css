@@ -25,7 +25,7 @@ h1 {
 }
 
 .chatbot {
-   
+
     background: #282828;
     border: 1px solid #EDEDED;
     border-radius: 37.5px;
@@ -42,14 +42,14 @@ h1 {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-  
+
     overflow: hidden;
 }
 
 .window {
-    
+
     width: calc(100% + 20px);
-    
+
     overflow-y: scroll;
     margin-bottom: 30px;
 
@@ -77,24 +77,70 @@ textarea {
     width: 100%;
     resize: none;
     overflow: hidden;
-    background:transparent;
-    outline:none;
-
-
+    background: transparent;
+    outline: none;
 }
 
-button  {
+.dots {
+    display: flex;
+    margin-right: 5px;
+}
+
+.dot {
+    background-color: black;
+    height: 4px;
+    width: 4px;
+    margin: 2px;
+    visibility: visible;
+    border-radius: 50%;
+    animation: flashin-border 2s  infinite;
+}
+.dot1{
+    
+}
+.dot2{
+   
+    animation-delay: 0.2s;
+}
+.dot3{
+    
+    animation-delay: 0.4s;
+}
+
+@keyframes flashin-border{
+  0%{
+    background-color: black;
+  }
+  10%{
+    background-color: transparent;
+  }
+  50%{
+    background-color: black;
+  }
+  100%{
+    background-color: black;
+  }
+}
+
+@keyframes printed-text{
+  from {
+    width: 0%;
+  }
+}
+
+button {
     background-color: transparent;
     border: none;
     padding: 0;
-    outline:none;
+    outline: none;
 }
+
 .send {
-	cursor: pointer;
+    cursor: pointer;
 }
 
 .nodisplay {
-	display: none;
+    display: none;
 }
 
 .message {
@@ -103,6 +149,7 @@ button  {
     justify-content: flex-start;
     align-items: flex-start;
     margin-bottom: 30px;
+    opacity: 0;
 
 }
 
@@ -118,8 +165,9 @@ button  {
     box-sizing: border-box;
     word-wrap: break-word;
 }
+
 .botmessage {
-     margin-left: 20px;
+    margin-left: 20px;
     background-color: #F1F0F0;
     border-radius: 35px;
     min-height: 70px;

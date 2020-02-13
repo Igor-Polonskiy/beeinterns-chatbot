@@ -2,26 +2,26 @@
 let dialog = $(".window");
 let send = $('.send');
 let text = $('.textmessage');
-
+let dots = $('.dots')
 let start = false;
 let number1 = 0;
 let number2 = 0;
 let count = false;
-let onkeyupflag = false;
 
 
 function check() {
     if (text.val() != '') {
         $('#graybutton').addClass('nodisplay');
         send.removeClass('nodisplay');
+        dots.removeClass('nodisplay');
     } else {
         $('#graybutton').removeClass('nodisplay');
         send.addClass('nodisplay');
+        dots.addClass('nodisplay');
     }
 }
 
 
-console.log(onkeyupflag);
 send.click(function() {
     let botico = $('<img src="img/bot.svg">');
     let userico = $('<img src="img/user.svg">');
@@ -32,8 +32,14 @@ send.click(function() {
 
     usermessage.append('<p>' + text.val() + '</p>');
     message.append(userico, usermessage);
+    
     dialog.append(message);
-    dialog.scrollTop(dialog.prop('scrollHeight'));
+    
+   message.animate({opacity: 1}, 500);
+
+    //dialog.scrollTop(dialog.prop('scrollHeight'));
+    dialog.animate({scrollTop: dialog.prop('scrollHeight')},"slow");
+
 
 
     if (text.val() == '/start') {
@@ -45,13 +51,13 @@ send.click(function() {
         botmessage.append('<p>Введите команду /start, для начала общения</p>');
 
     } else if (start == true) {
-        let arr = text.val().split(' ');
+        let arr = text.val().split(':');
         //alert(arr[0]);
 
-        if (arr[0] == '/name:') {
+        if (arr[0] == '/name') {
             botmessage.append('<p>Привет ' + arr[1] + ', приятно познакомится. Я умею считать, введи числа которые надо посчитать</p>');
 
-        } else if (arr[0] == '/number:') {
+        } else if (arr[0] == '/number') {
             count = true;
             let numbers = arr[1].split(',');
             number1 = Number(numbers[0]);
@@ -85,9 +91,11 @@ send.click(function() {
 
 
     answer.append(botico, botmessage);
+    //message.animate({height:},"fast");
     setTimeout(function() {
         dialog.append(answer);
-        dialog.scrollTop(dialog.prop('scrollHeight'));
+        answer.animate({opacity: 1}, 500);
+         dialog.animate({scrollTop: dialog.prop('scrollHeight')},"slow");
     }, 1000);
     text.val('');
     check();
