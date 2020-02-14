@@ -93,39 +93,35 @@ textarea {
     margin: 2px;
     visibility: visible;
     border-radius: 50%;
-    animation: flashin-border 2s  infinite;
+    animation: flashin-dots 2s infinite;
 }
-.dot1{
-    
-}
-.dot2{
-   
+
+.dot2 {
+
     animation-delay: 0.2s;
 }
-.dot3{
-    
+
+.dot3 {
+
     animation-delay: 0.4s;
 }
 
-@keyframes flashin-border{
-  0%{
-    background-color: black;
-  }
-  10%{
-    background-color: transparent;
-  }
-  50%{
-    background-color: black;
-  }
-  100%{
-    background-color: black;
-  }
-}
+@keyframes flashin-dots {
+    0% {
+        background-color: black;
+    }
 
-@keyframes printed-text{
-  from {
-    width: 0%;
-  }
+    10% {
+        background-color: transparent;
+    }
+
+    50% {
+        background-color: black;
+    }
+
+    100% {
+        background-color: black;
+    }
 }
 
 button {

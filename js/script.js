@@ -1,4 +1,4 @@
-
+//объявляем глобальные переменные
 let dialog = $(".window");
 let send = $('.send');
 let text = $('.textmessage');
@@ -7,8 +7,7 @@ let start = false;
 let number1 = 0;
 let number2 = 0;
 let count = false;
-
-
+//функция проверки поля ввода на наличие символов
 function check() {
     if (text.val() != '') {
         $('#graybutton').addClass('nodisplay');
@@ -20,8 +19,7 @@ function check() {
         dots.addClass('nodisplay');
     }
 }
-
-
+//функция отправки сообщения и получения ответа
 send.click(async function() {
     let botico = $('<img src="img/bot.svg">');
     let userico = $('<img src="img/user.svg">');
@@ -29,21 +27,13 @@ send.click(async function() {
     let usermessage = $('<div class="usermessage"></div>');
     let botmessage = $('<div class="botmessage"></div>');
     let answer = $("<div class='message'></div>");
-
     usermessage.append('<p>' + text.val() + '</p>');
     message.append(userico, usermessage);
-    
     dialog.append(message);
-    
-   message.animate({opacity: 1}, 500);
-
-    //dialog.scrollTop(dialog.prop('scrollHeight'));
-    dialog.animate({scrollTop: dialog.prop('scrollHeight')},"slow");
-
-
+    message.animate({ opacity: 1 }, 500);
+    dialog.animate({ scrollTop: dialog.prop('scrollHeight') }, "slow");
 
     if (text.val() == '/start') {
-
         botmessage.append('<p>Привет, меня зовут Чат-бот, а как зовут тебя?</p>');
         start = true;
 
@@ -52,11 +42,8 @@ send.click(async function() {
 
     } else if (start == true) {
         let arr = text.val().split(':');
-        //alert(arr[0]);
-
         if (arr[0] == '/name') {
             botmessage.append('<p>Привет ' + arr[1] + ', приятно познакомится. Я умею считать, введи числа которые надо посчитать</p>');
-
         } else if (arr[0] == '/number') {
             count = true;
             let numbers = arr[1].split(',');
@@ -80,55 +67,27 @@ send.click(async function() {
             botmessage.append('<p>' + number1 + '/' + number2 + '=' + result + '</p>');
             count = false;
         } else if (arr[0] == '/weather') {
-//'f85lGrZIE2W1l0Qdulmgl3uXue91uaPB'
-        	let url = 'http://dataservice.accuweather.com/forecasts/v1/daily/5day/294021?apikey=f85lGrZIE2W1l0Qdulmgl3uXue91uaPB&language=ru-RU&metric=true';
-        	let response = await fetch(url);
-        	let data = await response.json();
-        	alert(data.DailyForecasts[1].Day.IconPhrase);
-            botmessage.append('<p>Всего доброго, если хочешь поговорить пиши /start</p>');
-            start = false;
+            let url = 'http://dataservice.accuweather.com/forecasts/v1/daily/5day/294021?apikey=f85lGrZIE2W1l0Qdulmgl3uXue91uaPB&language=ru-RU&metric=true';
+            let response = await fetch(url);
+            let data = await response.json();
+            botmessage.append('<p>Завтра в Москве ' + data.DailyForecasts[1].Day.IconPhrase +
+                ', температура от ' + data.DailyForecasts[1].Temperature.Minimum.Value +
+                ' до ' + data.DailyForecasts[1].Temperature.Maximum.Value +
+                ' градусов по цельсию <a href=' + data.DailyForecasts[1].Link +
+                ' target="_blank" >Accuweather</a> </p>');
         } else if (arr[0] == '/stop') {
             botmessage.append('<p>Всего доброго, если хочешь поговорить пиши /start</p>');
             start = false;
         } else {
             botmessage.append('<p>Я не понимаю, введите другую команду!</p>');
         }
-
-
     }
-
-
     answer.append(botico, botmessage);
-    //message.animate({height:},"fast");
     setTimeout(function() {
         dialog.append(answer);
-        answer.animate({opacity: 1}, 500);
-         dialog.animate({scrollTop: dialog.prop('scrollHeight')},"slow");
+        answer.animate({ opacity: 1 }, 500);
+        dialog.animate({ scrollTop: dialog.prop('scrollHeight') }, "slow");
     }, 1000);
     text.val('');
     check();
-
 });
-
-
-
-
-
-
-
-
-
-
-
-
-// usermassage.append(userico, text.val());
-// dialog.append(usermassage);
-
-/*
-let botico = document.createElement('img');
-botico.src = "img/bot.svg";
-let bot = document.querySelector('div.window');
-let massage = document.createElement('div');
-massage.append(userico);
-bot.append(massage);
-bot.append(botico);*/
