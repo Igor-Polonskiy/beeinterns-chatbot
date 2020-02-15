@@ -1,8 +1,9 @@
 //объявляем глобальные переменные
-let dialog = $(".window");
-let send = $('.send');
-let text = $('.textmessage');
-let dots = $('.dots')
+const dialog = $(".window");
+const send = $('.send');
+const text = $('.textmessage');
+const dots = $('.dots');
+const graybtn = $('.gray-button');
 let start = false;
 let number1 = 0;
 let number2 = 0;
@@ -10,17 +11,17 @@ let count = false;
 //функция проверки поля ввода на наличие символов
 function check() {
     if (text.val() != '') {
-        $('#graybutton').addClass('nodisplay');
-        send.removeClass('nodisplay');
+        graybtn.hide();
+        send.show();
         dots.removeClass('nodisplay');
     } else {
-        $('#graybutton').removeClass('nodisplay');
-        send.addClass('nodisplay');
+        graybtn.show();
+        send.hide();
         dots.addClass('nodisplay');
     }
 }
 //функция отправки сообщения и получения ответа
-send.click(async function() {
+send.click(async function () {
     let botico = $('<img src="img/bot.svg">');
     let userico = $('<img src="img/user.svg">');
     let message = $("<div class='message'></div>");
